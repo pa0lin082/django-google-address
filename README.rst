@@ -3,7 +3,7 @@ Django Google Address
 ==========
 
 .. image:: https://img.shields.io/codeship/1e437ad0-05f2-0135-5add-32bab775782c/master.svg?style=flat-square
-  :target:: https://img.shields.io/codeship/1e437ad0-05f2-0135-5add-32bab775782c/master.svg?style=flat-square
+  :target: https://img.shields.io/codeship/1e437ad0-05f2-0135-5add-32bab775782c/master.svg?style=flat-square
 .. image:: https://img.shields.io/codecov/c/github/leonardoarroyo/django-google-address.svg?style=flat-square
   :target: https://codecov.io/gh/leonardoarroyo/django-google-address
 .. image:: https://img.shields.io/pypi/v/django-google-address.svg?style=flat-square
