@@ -1,6 +1,6 @@
-==========
+======================
 Django Google Address
-==========
+======================
 
 .. image:: https://img.shields.io/codeship/1e437ad0-05f2-0135-5add-32bab775782c/master.svg?style=flat-square
   :target: https://img.shields.io/codeship/1e437ad0-05f2-0135-5add-32bab775782c/master.svg?style=flat-square
@@ -21,12 +21,10 @@ Installing
 
 2. Add it to `INSTALLED_APPS` on `settings.py`::
 
-   INSTALLED_APPS = [
-     ...,
-     'google_address'
-   ]
-
-3. Add `vinaigrette` to `INSTALLED_APPS`
+    INSTALLED_APPS = [
+      ...,
+      'google_address'
+    ]
 
 
 Using
