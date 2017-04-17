@@ -1,7 +1,0 @@
-Hello! Someone sent you a message through the contact form.
-
-Name: {{name}}<br>
-Email: {{email}}<br>
-Phone: {{phone}}<br>
-
-{{message}}
