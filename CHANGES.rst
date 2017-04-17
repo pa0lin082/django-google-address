@@ -8,3 +8,4 @@ v0.1.0
 
 v0.1.1
 -----------
+* Rename Address.typed_address to Address.raw

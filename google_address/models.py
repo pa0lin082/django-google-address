@@ -28,7 +28,7 @@ class GoogleRegion(models.Model):
   filter_by = models.CharField(max_length=400)
 
 class GoogleAddress(models.Model):
-  typed_address = models.CharField(max_length=400, blank=True, null=True)
+  raw = models.CharField(max_length=400, blank=True, null=True)
   typed_address2 = models.CharField(max_length=400, blank=True, null=True)
   address_line = models.CharField(max_length=400, blank=True, null=True)
   city_state = models.CharField(max_length=400, blank=True, null=True)
@@ -104,7 +104,7 @@ def update_address(sender, instance, **kwargs):
   settings = helpers.get_settings()
   maps_language = settings.get('MAPS_API_LANGUAGE', 'en_US')
 
-  addressline = instance.typed_address
+  addressline = instance.raw
 
   url = 'https://maps.googleapis.com/maps/api/geocode/json?language={}&address={}'.format(maps_language, addressline)
 
