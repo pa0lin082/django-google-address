@@ -15,7 +15,6 @@ sys.path.insert(0, os.path.abspath(os.path.join(BASE_DIR, '../..')))
 # decorator, because it would miss the database setup.
 CUSTOM_INSTALLED_APPS = (
     'google_address',
-    'vinaigrette',
     'django.contrib.admin',
 )
 

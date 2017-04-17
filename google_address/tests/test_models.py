@@ -4,8 +4,6 @@ from django.test.utils import override_settings
 from google_address.models import GoogleAddress
 from google_address.models import AddressComponent
 from google_address.models import AddressComponentType
-from google_address.models import Skill
-from google_address.models import Cause
 
 def remove_component(address, types):
   for component in address.address_components.all():

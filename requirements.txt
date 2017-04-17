@@ -2,3 +2,4 @@ codecov==2.0.5
 coverage==4.3.4
 Django>=1.9
 djangorestframework>=3
+requests
