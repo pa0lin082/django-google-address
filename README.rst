@@ -2,11 +2,12 @@
 Django Google Address
 ==========
 
-.. image:: https://img.shields.io/codeship/38278120-748d-0134-a972-3a52ed362f75/master.svg?style=flat-square
+.. image:: https://img.shields.io/codeship/1e437ad0-05f2-0135-5add-32bab775782c/master.svg?style=flat-square
+  :target:: https://img.shields.io/codeship/1e437ad0-05f2-0135-5add-32bab775782c/master.svg?style=flat-square
 .. image:: https://img.shields.io/codecov/c/github/leonardoarroyo/django-google-address.svg?style=flat-square
   :target: https://codecov.io/gh/leonardoarroyo/django-google-address
-.. image:: https://img.shields.io/pypi/v/ovp-google-address.svg?style=flat-square
-  :target: https://pypi.python.org/pypi/ovp-google-address/
+.. image:: https://img.shields.io/pypi/v/django-google-address.svg?style=flat-square
+  :target: https://pypi.python.org/pypi/django-google-address/
 
 Address model backed by Google Maps API for your project.
 
