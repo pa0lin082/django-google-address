@@ -1,0 +1,130 @@
+# Translate Skills and Causes.
+# Copyright (C) 2016
+# This file is distributed under the same license as the ovp_search package.
+# Leonardo Arroyo <contato@leonardoarroyo.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.9\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-13 16:12+0000\n"
+"PO-Revision-Date: 2016-12-02 16:47+0000\n"
+"Last-Translator: Leonardo Arroyo <contato@leonardoarroyo.com>\n"
+"Language-Team: Leonardo Arroyo <contato@leonardoarroyo.com>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: django-ovp-core/ovp_core/models/cause.py:14
+msgid "cause"
+msgstr "causa"
+
+#: django-ovp-core/ovp_core/models/lead.py:5
+msgid "Name"
+msgstr "Nome"
+
+#: django-ovp-core/ovp_core/models/lead.py:6
+msgid "Email"
+msgstr "Email"
+
+#: django-ovp-core/ovp_core/models/lead.py:7
+msgid "Phone"
+msgstr "Telefone"
+
+#: django-ovp-core/ovp_core/models/lead.py:8
+msgid "Country"
+msgstr "País"
+
+#: django-ovp-core/ovp_core/models/lead.py:12
+msgid "Lead"
+msgstr "Lead"
+
+#: django-ovp-core/ovp_core/models/lead.py:13
+msgid "Leads"
+msgstr "Leads"
+
+#: django-ovp-core/ovp_core/models/skill.py:7
+msgid "name"
+msgstr "nome"
+
+#: django-ovp-core/ovp_core/models/skill.py:14
+msgid "skill"
+msgstr "habilidade"
+
+#: django-ovp-core/ovp_core/tests/runtests.py:80
+msgid "English"
+msgstr "Inglês"
+
+#: django-ovp-core/ovp_core/tests/runtests.py:81
+msgid "Portuguese"
+msgstr "Português"
+
+#~ msgid "Arts/Handcrafting"
+#~ msgstr "Artes/Artesanato"
+
+#~ msgid "Communication"
+#~ msgstr "Comunicação"
+
+#~ msgid "Dance/Music"
+#~ msgstr "Dança/Música"
+
+#~ msgid "Law"
+#~ msgstr "Direito"
+
+#~ msgid "Education"
+#~ msgstr "Educação"
+
+#~ msgid "Sports"
+#~ msgstr "Esportes"
+
+#~ msgid "Cooking"
+#~ msgstr "Gastronomia"
+
+#~ msgid "Management"
+#~ msgstr "Gestão"
+
+#~ msgid "Idioms"
+#~ msgstr "Idiomas"
+
+#~ msgid "Computers/Technology"
+#~ msgstr "Informática/Tecnologia"
+
+#~ msgid "Health"
+#~ msgstr "Saúde"
+
+#~ msgid "Others"
+#~ msgstr "Outros"
+
+#~ msgid "Professional Training"
+#~ msgstr "Capacitação Profissional"
+
+#~ msgid "Fight Poverty"
+#~ msgstr "Combate à Pobreza"
+
+#~ msgid "Conscious consumption"
+#~ msgstr "Consumo Consciente"
+
+#~ msgid "Culture, Sport and Art"
+#~ msgstr "Cultura, Esporte e Arte"
+
+#~ msgid "Human Rights"
+#~ msgstr "Direitos Humanos"
+
+#~ msgid "Youth"
+#~ msgstr "Crianças e Jovens"
+
+#~ msgid "Elders"
+#~ msgstr "Idosos"
+
+#~ msgid "Environment"
+#~ msgstr "Meio Ambiente"
+
+#~ msgid "Citizen Participation"
+#~ msgstr "Participação Cidadã"
+
+#~ msgid "Animal Protection"
+#~ msgstr "Proteção Animal"
+
+#~ msgid "People with disabilities"
+#~ msgstr "Pessoas com Deficiência"

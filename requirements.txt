@@ -1,0 +1,5 @@
+codecov==2.0.5
+coverage==4.3.4
+Django==1.10.5
+djangorestframework==3.5.3
+django-vinaigrette==1.0.1
