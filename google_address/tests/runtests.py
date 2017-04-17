@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(BASE_DIR, '../..')))
 # Unfortunately, apps can not be installed via ``modify_settings``
 # decorator, because it would miss the database setup.
 CUSTOM_INSTALLED_APPS = (
-    'ovp_core',
+    'google_address',
     'vinaigrette',
     'django.contrib.admin',
 )
@@ -70,7 +70,7 @@ settings.configure(
     ALLOWED_HOSTS=[],
     INSTALLED_APPS=ALWAYS_INSTALLED_APPS + CUSTOM_INSTALLED_APPS,
     MIDDLEWARE_CLASSES=ALWAYS_MIDDLEWARE_CLASSES,
-    ROOT_URLCONF='ovp_core.urls',
+    ROOT_URLCONF='google_address.urls',
     DATABASES={
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -110,9 +110,6 @@ settings.configure(
     DEFAULT_SEND_EMAIL='sync',
     REST_FRAMEWORK=REST_FRAMEWORK,
     AUTH_PASSWORD_VALIDATORS=AUTH_PASSWORD_VALIDATORS,
-    OVP_CORE={
-      'VALID_CONTACT_RECIPIENTS': ['testemail@1.com', 'testemail@2.com']
-    }
 )
 
 django.setup()

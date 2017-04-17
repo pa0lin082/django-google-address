@@ -1,8 +1,5 @@
 test:
-	@python ovp_core/tests/runtests.py
-
-lint:
-	@pylint ovp_core
+	@python google_address/tests/runtests.py
 
 clean-pycache:
 	@rm -r **/__pycache__

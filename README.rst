@@ -35,7 +35,7 @@ To test this module
 
 ::
 
-  python ovp_core/tests/runtests.py
+  python google_address/tests/runtests.py
 
 Contributing
 ---------------

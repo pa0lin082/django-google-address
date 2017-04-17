@@ -1,4 +1,4 @@
-from ovp_core import models
+from google_address import models
 from rest_framework import serializers
 
 
