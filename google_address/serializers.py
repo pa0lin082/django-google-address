@@ -5,14 +5,14 @@ from rest_framework import serializers
 class GoogleAddressSerializer(serializers.ModelSerializer):
   class Meta:
     model = models.GoogleAddress
-    fields = ['raw', 'typed_address2', 'address_line', 'city_state']
+    fields = ['raw', 'raw2', 'address_line', 'city_state']
     read_only_fields = ['address_line', 'city_state']
 
 
 class GoogleAddressLatLngSerializer(serializers.ModelSerializer):
   class Meta:
     model = models.GoogleAddress
-    fields = ['raw', 'typed_address2', 'address_line', 'city_state', 'lat', 'lng']
+    fields = ['raw', 'raw2', 'address_line', 'city_state', 'lat', 'lng']
     read_only_fields = ['address_line', 'city_state']
 
 

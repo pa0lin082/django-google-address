@@ -29,7 +29,7 @@ class GoogleRegion(models.Model):
 
 class GoogleAddress(models.Model):
   raw = models.CharField(max_length=400, blank=True, null=True)
-  typed_address2 = models.CharField(max_length=400, blank=True, null=True)
+  raw2 = models.CharField(max_length=400, blank=True, null=True)
   address_line = models.CharField(max_length=400, blank=True, null=True)
   city_state = models.CharField(max_length=400, blank=True, null=True)
   lat = models.FloatField('lat', blank=True, null=True)

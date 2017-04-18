@@ -7,18 +7,18 @@ from google_address.models import GoogleAddress
 
 class GoogleAddressAdmin(admin.ModelAdmin):
   fields = [
-    'id', 'raw', 'typed_address2'
+    'id', 'raw', 'raw2'
   ]
 
   list_display = [
-    'id', 'raw', 'typed_address2'
+    'id', 'raw', 'raw2'
   ]
 
   list_filter = []
 
   list_editable = []
 
-  search_fields = ['raw', 'typed_address2', 'address_line']
+  search_fields = ['raw', 'raw2', 'address_line']
 
   readonly_fields = [
     'id'

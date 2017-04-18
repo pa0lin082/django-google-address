@@ -18,12 +18,12 @@ class GoogleAddressModelTestCase(TestCase):
   @override_settings(GOOGLE_ADDRESS={'MAPS_API_LANGUAGE': 'en_US'})
   def test_api_call(self):
     """Assert GoogleAddress calls google API and get address"""
-    a = GoogleAddress(raw="Rua Teçaindá, 81, SP", typed_address2="Casa")
+    a = GoogleAddress(raw="Rua Teçaindá, 81, SP", raw2="Casa")
     a.save()
 
     a = GoogleAddress.objects.get(pk=a.pk)
     self.assertTrue(a.raw == "Rua Teçaindá, 81, SP")
-    self.assertTrue(a.typed_address2 == "Casa")
+    self.assertTrue(a.raw2 == "Casa")
     self.assertTrue(a.address_line == "Rua Teçaindá, 81, Pinheiros, São Paulo, SP, Brazil")
     self.assertTrue(a.__str__() == "Rua Teçaindá, 81, Pinheiros, São Paulo, SP, Brazil")
     self.assertTrue(a.lat)
@@ -33,7 +33,7 @@ class GoogleAddressModelTestCase(TestCase):
     a.save()
     a = GoogleAddress.objects.get(pk=a.pk)
     self.assertTrue(a.raw == "Rua Capote Valente, 701, SP")
-    self.assertTrue(a.typed_address2 == "Casa")
+    self.assertTrue(a.raw2 == "Casa")
     self.assertTrue(a.address_line == "Rua Capote Valente, 701, Pinheiros, São Paulo, SP, Brazil")
     self.assertTrue(a.__str__()  == "Rua Capote Valente, 701, Pinheiros, São Paulo, SP, Brazil")
     self.assertTrue(a.lat)
