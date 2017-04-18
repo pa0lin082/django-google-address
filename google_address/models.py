@@ -39,7 +39,6 @@ class GoogleAddress(models.Model):
   def get_city_state(self):
     state = self.address_components.filter(types__name='administrative_area_level_1')
     county = self.address_components.filter(types__name='administrative_area_level_2')
-    sublocality = self.address_components.filter(types__name='sublocality')
     locality = self.address_components.filter(types__name='locality')
 
     s = u""
@@ -47,8 +46,6 @@ class GoogleAddress(models.Model):
       s += u"{}, ".format(locality[0].long_name)
     elif county.count():
       s += u"{}, ".format(county[0].long_name)
-    elif sublocality.count():
-      s += u"{}, ".format(sublocality[0].long_name)
 
     if state.count():
       s += state[0].short_name
