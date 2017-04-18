@@ -35,31 +35,6 @@ ALWAYS_MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20,
-    'PAGINATE_BY_PARAM': 'page_size',
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    )
-}
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
 gettext = lambda s: s
 
 settings.configure(
@@ -106,9 +81,7 @@ settings.configure(
             },
         },
     ],
-    DEFAULT_SEND_EMAIL='sync',
-    REST_FRAMEWORK=REST_FRAMEWORK,
-    AUTH_PASSWORD_VALIDATORS=AUTH_PASSWORD_VALIDATORS,
+    GOOGLE_ADDRESS = {'API_LANGUAGE': 'en_US'}
 )
 
 django.setup()

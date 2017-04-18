@@ -5,9 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from google_address import helpers
-
-import os
-import requests
+from google_address.google_address import GoogleAddressApi
 
 class AddressComponentType(models.Model):
   name = models.CharField(max_length=100)
@@ -95,28 +93,18 @@ class GoogleAddress(models.Model):
 
 @receiver(post_save, sender=GoogleAddress)
 def update_address(sender, instance, **kwargs):
+  # If raw == True, we should not modify the record
+  #
+  # https://docs.djangoproject.com/en/1.11/ref/signals/#post-save
   if kwargs.get('raw', False): # pragma: no cover
     return None
 
-  settings = helpers.get_settings()
-  maps_language = settings.get('MAPS_API_LANGUAGE', 'en_US')
-
-  addressline = instance.raw
-
-  url = 'https://maps.googleapis.com/maps/api/geocode/json?language={}&address={}'.format(maps_language, addressline)
-
-  key = os.environ.get('GOOGLE_MAPS_KEY', None)
-  if key: #pragma: no cover
-    url = '{}&key={}'.format(url, key)
-
-  r = requests.get(url)
-  data = r.json()
+  data = GoogleAddressApi().get_address(instance.raw)
 
   # Iterate through address components
   instance.address_components.clear()
   if len(data['results']) > 0:
     for component in data['results'][0]['address_components']:
-    # TODO: Do not work only with first result
       # Look for component with same name and type
       ac = AddressComponent.objects.annotate(count=Count('types')).filter(long_name=component['long_name'], short_name=component['short_name'])
       for component_type in component['types']:

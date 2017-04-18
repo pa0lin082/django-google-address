@@ -14,8 +14,8 @@ def remove_component(address, types):
   return address
 
 
+@override_settings(GOOGLE_ADDRESS={'API_LANGUAGE': 'en_US'})
 class GoogleAddressModelTestCase(TestCase):
-  @override_settings(GOOGLE_ADDRESS={'MAPS_API_LANGUAGE': 'en_US'})
   def test_api_call(self):
     """Assert GoogleAddress calls google API and get address"""
     a = GoogleAddress(raw="Rua Teçaindá, 81, SP", raw2="Casa")
