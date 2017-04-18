@@ -29,7 +29,7 @@ class GoogleAddressApi():
 
     return self.url
 
-  def get_address(self, raw):
+  def query(self, raw):
     url = self._get_url().format(address=raw)
 
     r = requests.get(url)

@@ -21,6 +21,36 @@ class AddressComponent(models.Model):
   def __str__(self):
     return self.long_name
 
+  @staticmethod
+  def get_or_create_component(api_component):
+    # Look for component with same name and type
+    component = AddressComponent.objects.annotate(count=Count('types')).filter(long_name=api_component['long_name'], short_name=api_component['short_name'])
+    for component_type in api_component['types']:
+      component = component.filter(types__name=component_type)
+    component = component.filter(count=len(api_component['types']))
+
+    if not component.count():
+    # Component not found, creating
+      component = AddressComponent(long_name=api_component['long_name'], short_name=api_component['short_name'])
+      component.save()
+    else:
+      # We clear and recreate types because
+      # sometimes google changes types for a given component
+      component = component.first()
+      component.types.clear()
+      component.save()
+
+    # Add types for component
+    for api_component_type in api_component['types']:
+      try:
+        component_type = AddressComponentType.objects.get(name=api_component_type)
+      except ObjectDoesNotExist:
+        component_type = AddressComponentType(name=api_component_type)
+        component_type.save()
+      component.types.add(component_type)
+
+    return component
+
 class GoogleRegion(models.Model):
   region_name = models.CharField(max_length=400)
   filter_by = models.CharField(max_length=400)
@@ -99,45 +129,23 @@ def update_address(sender, instance, **kwargs):
   if kwargs.get('raw', False): # pragma: no cover
     return None
 
-  data = GoogleAddressApi().get_address(instance.raw)
+  response = GoogleAddressApi().query(instance.raw)
 
-  # Iterate through address components
+  if len(response["results"]) > 0:
+    result = response["results"][0]
+  else:
+    return False
+
   instance.address_components.clear()
-  if len(data['results']) > 0:
-    for component in data['results'][0]['address_components']:
-      # Look for component with same name and type
-      ac = AddressComponent.objects.annotate(count=Count('types')).filter(long_name=component['long_name'], short_name=component['short_name'])
-      for component_type in component['types']:
-        ac = ac.filter(types__name=component_type)
-      ac = ac.filter(count=len(component['types']))
+  for api_component in result['address_components']:
+    component = AddressComponent.get_or_create_component(api_component)
+    instance.address_components.add(component)
 
-      if not ac.count():
-      # Component not found, creating
-        ac = AddressComponent(long_name=component['long_name'], short_name=component['short_name'])
-        ac.save()
-      else:
-        ac = ac.first()
-        ac.types.clear()
-        ac.save()
+  try:
+    if result["geometry"]:
+      GoogleAddress.objects.filter(pk=instance.pk).update(lat=result['geometry']['location']['lat'], lng=result['geometry']['location']['lng'])
+  except: #pragma: no cover
+    pass
 
-
-      # Add types for component
-      for ctype in component['types']:
-        try:
-          at = AddressComponentType.objects.get(name=ctype)
-        except ObjectDoesNotExist:
-          at = AddressComponentType(name=ctype)
-          at.save()
-        ac.types.add(at)
-
-      instance.address_components.add(ac)
-
-    try:
-      if data['results'][0]['geometry']:
-        GoogleAddress.objects.filter(pk=instance.pk).update(lat=data['results'][0]['geometry']['location']['lat'], lng=data['results'][0]['geometry']['location']['lng'])
-    except: #pragma: no cover
-      pass
-
-    # Using update to avoid post_save signal
-    GoogleAddress.objects.filter(pk=instance.pk).update(address_line=instance.get_address(), city_state=instance.get_city_state())
-    #update_searchindex(instance)
+  # Using update to avoid post_save signal
+  GoogleAddress.objects.filter(pk=instance.pk).update(address_line=instance.get_address(), city_state=instance.get_city_state())
