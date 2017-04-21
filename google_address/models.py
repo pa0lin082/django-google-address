@@ -55,7 +55,7 @@ class GoogleRegion(models.Model):
   region_name = models.CharField(max_length=400)
   filter_by = models.CharField(max_length=400)
 
-class GoogleAddress(models.Model):
+class Address(models.Model):
   raw = models.CharField(max_length=400, blank=True, null=True)
   raw2 = models.CharField(max_length=400, blank=True, null=True)
   address_line = models.CharField(max_length=400, blank=True, null=True)
@@ -121,7 +121,7 @@ class GoogleAddress(models.Model):
     return ""
 
 
-@receiver(post_save, sender=GoogleAddress)
+@receiver(post_save, sender=Address)
 def update_address(sender, instance, **kwargs):
   # If raw == True, we should not modify the record
   #
@@ -143,9 +143,10 @@ def update_address(sender, instance, **kwargs):
 
   try:
     if result["geometry"]:
-      GoogleAddress.objects.filter(pk=instance.pk).update(lat=result['geometry']['location']['lat'], lng=result['geometry']['location']['lng'])
+      Address.objects.filter(pk=instance.pk).update(lat=result['geometry']['location']['lat'], lng=result['geometry']['location']['lng'])
   except: #pragma: no cover
     pass
 
   # Using update to avoid post_save signal
-  GoogleAddress.objects.filter(pk=instance.pk).update(address_line=instance.get_address(), city_state=instance.get_city_state())
+  instance.address_line = instance.get_address()
+  Address.objects.filter(pk=instance.pk).update(address_line=instance.address_line, city_state=instance.get_city_state())

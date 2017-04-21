@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test.utils import override_settings
 
-from google_address.models import GoogleAddress
+from google_address.models import Address
 from google_address.models import AddressComponent
 from google_address.models import AddressComponentType
 
@@ -15,13 +15,13 @@ def remove_component(address, types):
 
 
 @override_settings(GOOGLE_ADDRESS={'API_LANGUAGE': 'en_US'})
-class GoogleAddressModelTestCase(TestCase):
+class AddressModelTestCase(TestCase):
   def test_api_call(self):
-    """Assert GoogleAddress calls google API and get address"""
-    a = GoogleAddress(raw="Rua Teçaindá, 81, SP", raw2="Casa")
+    """Assert Address calls google API and get address"""
+    a = Address(raw="Rua Teçaindá, 81, SP", raw2="Casa")
     a.save()
 
-    a = GoogleAddress.objects.get(pk=a.pk)
+    a = Address.objects.get(pk=a.pk)
     self.assertTrue(a.raw == "Rua Teçaindá, 81, SP")
     self.assertTrue(a.raw2 == "Casa")
     self.assertTrue(a.address_line == "Rua Teçaindá, 81, Pinheiros, São Paulo, SP, Brazil")
@@ -31,7 +31,7 @@ class GoogleAddressModelTestCase(TestCase):
 
     a.raw="Rua Capote Valente, 701, SP"
     a.save()
-    a = GoogleAddress.objects.get(pk=a.pk)
+    a = Address.objects.get(pk=a.pk)
     self.assertTrue(a.raw == "Rua Capote Valente, 701, SP")
     self.assertTrue(a.raw2 == "Casa")
     self.assertTrue(a.address_line == "Rua Capote Valente, 701, Pinheiros, São Paulo, SP, Brazil")
@@ -43,8 +43,8 @@ class GoogleAddressModelTestCase(TestCase):
     self.assertTrue(a.__str__() == "")
 
   def test_locality(self):
-    """Assert GoogleAddressModel.get_city_state preference order is locality, administrative_area_2"""
-    a = GoogleAddress(raw="Chicago")
+    """Assert AddressModel.get_city_state preference order is locality, administrative_area_2"""
+    a = Address(raw="Chicago")
     a.save()
     self.assertTrue("Chicago" in a.get_city_state())
 
