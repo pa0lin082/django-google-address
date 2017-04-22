@@ -19,7 +19,7 @@ Installing
 """"""""""""""
 1. Install django-google-address::
 
-    pip install ovp-core
+    pip install django-google-address
 
 2. Add it to `INSTALLED_APPS` on `settings.py`::
 
