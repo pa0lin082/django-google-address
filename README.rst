@@ -47,7 +47,7 @@ Create an Address object with the raw address. Requests will be made to the Goog
 Documentation
 ---------------
 
-You can check the complete documentation `here <http://django-google-address.readthedocs.io/en/stable/>`.
+You can check the complete documentation `here <http://django-google-address.readthedocs.io/en/stable/>`_.
 
 Testing
 ---------------
