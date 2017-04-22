@@ -52,7 +52,6 @@ settings.configure(
     },
     LANGUAGES = (
       ('en-us', gettext('English')),
-      ('pt-br', gettext('Portuguese')),
     ),
     LANGUAGE_CODE='en-us',
     TIME_ZONE='UTC',
