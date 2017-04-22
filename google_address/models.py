@@ -51,10 +51,6 @@ class AddressComponent(models.Model):
 
     return component
 
-class GoogleRegion(models.Model):
-  region_name = models.CharField(max_length=400)
-  filter_by = models.CharField(max_length=400)
-
 class Address(models.Model):
   raw = models.CharField(max_length=400, blank=True, null=True)
   raw2 = models.CharField(max_length=400, blank=True, null=True)
