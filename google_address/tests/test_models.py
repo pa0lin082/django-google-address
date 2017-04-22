@@ -60,6 +60,12 @@ class AddressModelTestCase(TestCase):
 
     self.assertTrue(a.get_country_code() == None)
 
+  def test_signal_returns_in_case_of_no_result(self):
+    """Assert AddressModel.get_country_code returns None instead of rasing AttributeError if no country exists"""
+    a = Address(raw="abcdefghijklmnopqrstuvwxyz")
+    a.save()
+    self.assertTrue(a.address_line == None)
+
 
 class AddressComponentTypeModelTestCase(TestCase):
   def test_str_call(self):
