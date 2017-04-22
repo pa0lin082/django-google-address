@@ -51,6 +51,15 @@ class AddressModelTestCase(TestCase):
     a = remove_component(a, ['locality'])
     self.assertTrue("Cook" in a.get_city_state())
 
+  def test_no_country(self):
+    """Assert AddressModel.get_country_code returns None instead of rasing AttributeError if no country exists"""
+    a = Address(raw="Chicago")
+    a.save()
+
+    AddressComponent.objects.all().delete()
+
+    self.assertTrue(a.get_country_code() == None)
+
 
 class AddressComponentTypeModelTestCase(TestCase):
   def test_str_call(self):
