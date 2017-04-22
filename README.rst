@@ -57,10 +57,6 @@ To test this module
 
   python google_address/tests/runtests.py
 
-Contributing
----------------
-Please read `CONTRIBUTING.md <https://github.com/leonardoarroyo/django-google-address/blob/master/CONTRIBUTING.md>`_ for details on our code of conduct, and the process for submitting pull requests to us.
-
 Versioning
 ---------------
 We use `SemVer <http://semver.org/>`_ for versioning. For the versions available, see the `tags on this repository <https://github.com/leonardoarroyo/django-google-address/tags>`_. 

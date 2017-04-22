@@ -15,3 +15,4 @@ v1.0.1[unreleased]
 * Add settings examples to documentation
 * Update "Getting Started" and "Documentation" sections on README.rst
 * Modify license from AGPL to MIT.
+* Remove "Contributing" section from README.rst
