@@ -13,4 +13,4 @@ v1.0.0
 v1.0.1[unreleased]
 -----------
 * Add settings examples to documentation
-
+* Update "Getting Started" and "Documentation" sections on README.rst

@@ -26,13 +26,26 @@ Installing
       'google_address'
     ]
 
+3. Migrate::
+  
+    ./manage.py migrate
+
 
 Using
 """"""""""""""
 
+Create an Address object with the raw address. Requests will be made to the Google API when saving the address::
+
+    >>> from google_address.models import Address
+    >>> a = Address(raw="Av. Paulista, 1000")
+    >>> a.save()
+    >>> a.address_line
+    'Avenida Paulista, 1000, Bela Vista, São Paulo, SP, Brazil'
+
 Documentation
 ---------------
-Insert documentation here :)
+
+You can check the complete documentation `here <http://django-google-address.readthedocs.io/en/stable/>`.
 
 Testing
 ---------------
