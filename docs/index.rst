@@ -1,20 +1,13 @@
-.. django-google-address documentation master file, created by
-   sphinx-quickstart on Tue Apr 18 19:07:16 2017.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to django-google-address's documentation!
+django-google-address
 =================================================
+
+django-google-address provides you a quick way to integrate addresses in your models backed by Google Maps API.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   src/getting_started
+   src/settings
+   src/models
+   src/filtering
