@@ -10,9 +10,12 @@ v1.0.0
 -----------
 * First stable release
 
-v1.0.1[unreleased]
+v1.0.1
 -----------
 * Add settings examples to documentation
 * Update "Getting Started" and "Documentation" sections on README.rst
 * Modify license from AGPL to MIT.
 * Remove "Contributing" section from README.rst
+
+v1.0.2[unreleased]
+-----------
