@@ -7,16 +7,16 @@ reqs = [str(ir.req) for ir in install_reqs]
 
 setup(
     name='django-google-address',
-    version='1.0.1',
+    version='1.0.2',
     author=u'Leonardo Arroyo',
     author_email='contato@leonardoarroyo.com',
     packages=find_packages(),
     include_package_data=True,
     url='https://github.com/leonardoarroyo/django-google-address',
-    download_url = 'https://github.com/leonardoarroyo/django-google-address/tarball/1.0.1',
+    download_url='https://github.com/leonardoarroyo/django-google-address/tarball/1.0.2',
     license='MIT',
     description='',
     long_description=open('README.rst', encoding='utf-8').read(),
     zip_safe=False,
-    install_requires = reqs
+    install_requires=reqs
 )

@@ -17,6 +17,9 @@ v1.0.1
 * Modify license from AGPL to MIT.
 * Remove "Contributing" section from README.rst
 
-v1.0.2[unreleased]
+v1.0.2
 -----------
 * Fix documentation badge link
+
+v1.0.3[unreleased]
+-----------
