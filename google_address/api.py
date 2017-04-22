@@ -5,18 +5,12 @@ class GoogleAddressApi():
   url = 'https://maps.googleapis.com/maps/api/geocode/json?address={address}'
   key = None
 
-  def __init__(self, key=None, language=None):
+  def __init__(self):
     # Set key
-    if key == None:
-      self.key = helpers.get_settings().get("API_KEY", None)
-    else:
-      self.key = key
+    self.key = helpers.get_settings().get("API_KEY", None)
 
     # Set language
-    if language == None:
-      self.language = helpers.get_settings().get("API_LANGUAGE", "en_US")
-    else:
-      self.language = language
+    self.language = helpers.get_settings().get("API_LANGUAGE", "en_US")
 
   def _get_url(self):
     url = self.url
@@ -27,7 +21,7 @@ class GoogleAddressApi():
     if self.language:
       url = "{}&language={}".format(url, self.language)
 
-    return self.url
+    return url
 
   def query(self, raw):
     url = self._get_url().format(address=raw)
