@@ -5,7 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from google_address import helpers
-from google_address.google_address import GoogleAddressApi
+from google_address.api import GoogleAddressApi
 
 class AddressComponentType(models.Model):
   name = models.CharField(max_length=100)
