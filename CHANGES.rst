@@ -6,7 +6,6 @@ v0.1.0
 -----------
 * First version. Unmodified code from django-ovp-core.
 
-v0.1.1
+v1.0.0
 -----------
-* Rename Address.typed_address to Address.raw
-* Rename Address.typed_address2 to Address.raw2
+* First stable release
