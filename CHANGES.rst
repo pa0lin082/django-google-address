@@ -21,6 +21,9 @@ v1.0.2
 -----------
 * Fix documentation badge link
 
-v1.0.3[unreleased]
+v1.0.3
 -----------
 Add requirements to MANIFEST.in
+
+v1.0.4[unreleased]
+-----------
