@@ -23,3 +23,4 @@ v1.0.2
 
 v1.0.3[unreleased]
 -----------
+Add requirements to MANIFEST.in
