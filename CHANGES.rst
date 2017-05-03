@@ -23,7 +23,8 @@ v1.0.2
 
 v1.0.3
 -----------
-Add requirements to MANIFEST.in
+* Add requirements to MANIFEST.in
 
 v1.0.4[unreleased]
 -----------
+* Add ASYNC_CALLS setting
