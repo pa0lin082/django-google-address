@@ -96,6 +96,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Settings</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#api-key">API_KEY</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#api-language">API_LANGUAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#async-calls">ASYNC_CALLS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#example-configuration">Example configuration</a></li>
 </ul>
 </li>
@@ -177,10 +178,15 @@
 <p>The language which addresses will be requested in.</p>
 <p>Default: <cite>en_US</cite></p>
 </div>
+<div class="section" id="async-calls">
+<h2>ASYNC_CALLS<a class="headerlink" href="#async-calls" title="Permalink to this headline">¶</a></h2>
+<p>When saving an <cite>Address</cite> object, a request will be made to Google Maps API to fetch address information. When set to <cite>True</cite>, this will make the requests asynchronous so you can return a response to the user without waiting for an API response.</p>
+<p>Default: <cite>False</cite></p>
+</div>
 <div class="section" id="example-configuration">
 <h2>Example configuration<a class="headerlink" href="#example-configuration" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">GOOGLE_ADDRESS</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="s1">&#39;API_KEY&#39;</span><span class="p">:</span> <span class="s1">&#39;BIzaSyFCcHqskKlpsUJ5jdQGVzdP-7uNu9O4g8w&#39;</span>
+  <span class="s1">&#39;API_KEY&#39;</span><span class="p">:</span> <span class="s1">&#39;BIzaSyFCcHqskKlpsUJ5jdQGVzdP-7uNu9O4g8w&#39;</span><span class="p">,</span>
   <span class="s1">&#39;API_LANGUAGE&#39;</span><span class="p">:</span> <span class="s1">&#39;en_US&#39;</span>
 <span class="p">}</span>
 </pre></div>
