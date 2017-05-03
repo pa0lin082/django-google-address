@@ -1,11 +1,6 @@
 from django.db import models
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Q, Count
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
-from google_address import helpers
-from google_address.api import GoogleAddressApi
+from django.db.models import Count
 
 class AddressComponentType(models.Model):
   name = models.CharField(max_length=100)
@@ -115,34 +110,3 @@ class Address(models.Model):
     if self.address_line:
       return self.address_line
     return ""
-
-
-@receiver(post_save, sender=Address)
-def update_address(sender, instance, **kwargs):
-  # If raw == True, we should not modify the record
-  #
-  # https://docs.djangoproject.com/en/1.11/ref/signals/#post-save
-  if kwargs.get('raw', False): # pragma: no cover
-    return None
-
-  response = GoogleAddressApi().query(instance.raw)
-
-  if len(response["results"]) > 0:
-    result = response["results"][0]
-  else:
-    return False
-
-  instance.address_components.clear()
-  for api_component in result['address_components']:
-    component = AddressComponent.get_or_create_component(api_component)
-    instance.address_components.add(component)
-
-  try:
-    if result["geometry"]:
-      Address.objects.filter(pk=instance.pk).update(lat=result['geometry']['location']['lat'], lng=result['geometry']['location']['lng'])
-  except: #pragma: no cover
-    pass
-
-  # Using update to avoid post_save signal
-  instance.address_line = instance.get_address()
-  Address.objects.filter(pk=instance.pk).update(address_line=instance.address_line, city_state=instance.get_city_state())

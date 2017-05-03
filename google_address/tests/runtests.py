@@ -47,7 +47,7 @@ settings.configure(
     ROOT_URLCONF='google_address.urls',
     DATABASES={
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'django.db.backends.sqlite3'
         }
     },
     LANGUAGES = (
