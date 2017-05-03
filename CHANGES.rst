@@ -25,6 +25,9 @@ v1.0.3
 -----------
 * Add requirements to MANIFEST.in
 
-v1.0.4[unreleased]
+v1.1.0
 -----------
 * Add ASYNC_CALLS setting
+
+v1.1.1[unreleased]
+-----------
