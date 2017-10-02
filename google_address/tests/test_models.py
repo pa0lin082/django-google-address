@@ -1,9 +1,13 @@
 from django.test import TestCase
 from django.test.utils import override_settings
+from django.core.exceptions import ValidationError
 
 from google_address.models import Address
 from google_address.models import AddressComponent
 from google_address.models import AddressComponentType
+from google_address.fields import AddressField
+
+from demo.models import DemoObj
 
 
 def remove_component(address, types):
@@ -97,3 +101,42 @@ class AddressComponentModelTestCase(TestCase):
         a.save()
 
         self.assertTrue(a.__str__() == "long")
+
+
+class AddressFieldTestCase(TestCase):
+
+    def test_address_field_constructor(self):
+        field_instance = AddressField(null=True, blank=True)
+        name, path, args, kwargs = field_instance.deconstruct()
+        new_instance = AddressField(*args, **kwargs)
+
+        self.assertEqual(field_instance.null, new_instance.null)
+
+    def test_address_field_from_string(self):
+        d = DemoObj()
+        d.address = 'via villoresi 24'
+        d.save()
+        assert isinstance(d.address, Address)
+
+    def test_address_field_from_int(self):
+
+        with self.assertRaises(ValidationError):
+            d = DemoObj()
+            d.address = 1
+            d.save()
+
+        a = Address(raw='Lombardia')
+        a.save()
+
+        d = DemoObj()
+        d.address = a.pk
+        d.save()
+        assert isinstance(d.address, Address)
+        assert d.address == a
+
+        d = DemoObj.objects.last()
+        assert isinstance(d.address, Address)
+        assert d.address == a
+
+
+

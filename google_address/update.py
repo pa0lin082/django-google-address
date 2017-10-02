@@ -11,27 +11,34 @@ def update_address(instance):
     if len(response["results"]) > 0:
         result = response["results"][0]
     else:
-        print('Length error')
-        pprint.pprint(response)
         return False
 
     instance.address_components.clear()
     for api_component in result["address_components"]:
-        print(api_component)
         component = AddressComponent.get_or_create_component(api_component)
         instance.address_components.add(component)
 
+    # Using update to avoid post_save signal. insert update_params in update_kwargs
+    update_kwargs = {}
     try:
         if result["geometry"]:
-            Address.objects.filter(pk=instance.pk).update(lat=result["geometry"]["location"]["lat"],
-                                                          lng=result["geometry"]["location"]["lng"])
+            update_kwargs['lat'] = result["geometry"]["location"]["lat"]
+            update_kwargs['lng'] = result["geometry"]["location"]["lng"]
+
     except:  # pragma: no cover
         pass
 
-    # Using update to avoid post_save signal
-    instance.address_line = instance.get_address()
-    Address.objects.filter(pk=instance.pk).update(address_line=instance.address_line,
-                                                  city_state=instance.get_city_state())
+    address_line = instance.get_address()
+    if address_line != instance.address_line:
+        update_kwargs['address_line'] = instance.get_address()
+
+    city_state = instance.get_city_state()
+    if city_state != instance.city_state:
+        update_kwargs['city_state'] = instance.get_city_state()
+
+    if update_kwargs:
+        Address.objects.filter(pk=instance.pk).update(**update_kwargs)
+
 
 
 class UpdateThread(threading.Thread):
