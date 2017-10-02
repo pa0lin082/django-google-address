@@ -2,11 +2,12 @@
 import glob
 import os
 import sys
+import copy
 
 import django
 from django.conf import settings
 from django.core.management import execute_from_command_line
-
+from django.test.utils import get_runner
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, os.path.abspath(os.path.join(BASE_DIR, '../..')))
@@ -15,6 +16,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(BASE_DIR, '../..')))
 # decorator, because it would miss the database setup.
 CUSTOM_INSTALLED_APPS = (
     'google_address',
+    # 'modeltranslation',
     'django.contrib.admin',
 )
 
@@ -82,26 +84,51 @@ settings.configure(
     GOOGLE_ADDRESS = {'API_LANGUAGE': 'en_US'}
 )
 
-django.setup()
-args = [sys.argv[0], 'test']
-# Current module (``tests``) and its submodules.
-test_cases = '.'
+if __name__ == '__main__':
+    django.setup()
+    args = [sys.argv[0], 'test']
+    # Current module (``tests``) and its submodules.
+    test_cases = '.'
 
-# Allow accessing test options from the command line.
-offset = 1
-try:
-    sys.argv[1]
-except IndexError:
-    pass
-else: #pragma: no cover
-    option = sys.argv[1].startswith('-')
-    if not option:
-        test_cases = sys.argv[1]
-        offset = 2
+    # Allow accessing test options from the command line.
+    offset = 1
+    try:
+        sys.argv[1]
+    except IndexError:
+        pass
+    else: #pragma: no cover
+        option = sys.argv[1].startswith('-')
+        if not option:
+            test_cases = sys.argv[1]
+            offset = 2
 
-args.append(test_cases)
-# ``verbosity`` can be overwritten from command line.
-args.append('--verbosity=2')
-args.extend(sys.argv[offset:])
+    args.append(test_cases)
+    # ``verbosity`` can be overwritten from command line.
+    args.append('--verbosity=2')
+    args.extend(sys.argv[offset:])
 
-execute_from_command_line(args)
+    test_labels = []
+    TestRunner = get_runner(settings)
+    test_runner = TestRunner(verbosity=2)
+    test_runner.setup_test_environment()
+    suite = test_runner.build_suite(test_labels, None)
+    old_config = test_runner.setup_databases()
+    test_runner.run_checks()
+
+    print('suite:',suite)
+    for a in range(10):
+        copy_suite = suite = test_runner.build_suite(test_labels, None)
+        result = test_runner.run_suite(copy_suite)
+        print('suite:', suite)
+        # print(result)
+
+
+
+    test_runner.teardown_databases(old_config)
+    test_runner.teardown_test_environment()
+    test_runner.suite_result(suite, result)
+
+
+    # test_runner.run_tests([])
+    # test_runner.run_tests([])
+    # execute_from_command_line(args)
