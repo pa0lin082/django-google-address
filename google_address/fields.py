@@ -46,12 +46,12 @@ class AddressDescriptor(ForwardManyToOneDescriptor):
 
         # A dictionary of named address components.
         elif isinstance(value, dict):
-            return self.from_dict()
+            return self.address_from_dict()
 
         # Not in any of the formats I recognise.
         raise ValidationError('Invalid address value.')
 
-    def from_dict(self):
+    def address_from_dict(self):
         raise NotImplementedError()
 
 

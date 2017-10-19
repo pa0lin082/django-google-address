@@ -118,7 +118,7 @@ class AddressFieldTestCase(TestCase):
         d.save()
         assert isinstance(d.address, Address)
 
-    def test_address_field_from_int(self):
+    def test_address_field_from_pk(self):
 
         with self.assertRaises(ValidationError):
             d = DemoObj()
