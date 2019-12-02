@@ -62,6 +62,6 @@ class AddressField(models.ForeignKey):
         kwargs['to'] = 'google_address.address'
         super(AddressField, self).__init__(**kwargs)
 
-    def contribute_to_class(self, cls, name, virtual_only=False):
-        super(ForeignObject, self).contribute_to_class(cls, name, virtual_only=virtual_only)
+    def contribute_to_class(self, cls, name, *args, **kwargs):
+        super(ForeignObject, self).contribute_to_class(cls, name,  *args, **kwargs)
         setattr(cls, self.name, AddressDescriptor(self))
