@@ -16,7 +16,7 @@ except AttributeError:
 
 setup(
     name='django-google-address',
-    version='1.1.0',
+    version='1.1.1',
     author=u'Leonardo Arroyo',
     author_email='contato@leonardoarroyo.com',
     packages=find_packages(),
